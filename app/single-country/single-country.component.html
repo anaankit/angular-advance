@@ -1,0 +1,151 @@
+
+<div style="margin-top: 3%"></div>
+
+<div class="container-fluid">
+    <button style="margin: 1%" type="button" (click) = 'goBack()'  class="btn btn-outline-primary">Back</button>
+  <div class="box" [ngStyle]="{background:' url(' + allDetails[0].flag + ')' , 'background-size':'cover',
+'background-repeat': 'no-repeat', 'background-position':'center center'}">
+    <div class="inside">
+
+      <h3>{{allDetails[0].name.toUpperCase()}}</h3>
+      <div class="info">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="info1">
+              <ul>
+                <li>
+                  Name: {{allDetails[0].name}}
+                </li>
+                <li>
+                  Capital: {{allDetails[0].capital}}
+                </li>
+                <li>
+                  Calling Codes: {{allDetails[0].callingCodes.toString().split(",").join(", ")}}
+                </li>
+                <li>
+                  Alternate Spellings: {{allDetails[0].altSpellings.toString().split(",").join(", ")}}
+                </li>
+                <li *ngIf="allDetails[0].borders.length>0">
+                    Borders: {{allDetails[0].borders.toString().split(",").join(", ")}}
+                  </li>
+                  <li>
+                    Native Name: {{allDetails[0].nativeName}}
+                  </li>
+                  
+                 
+                </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info2">
+              <ul>
+                <li>
+                  Region: {{allDetails[0].region}}
+                </li>
+                <li>
+                  Sub Region: {{allDetails[0].subregion}}
+                </li>
+                <li>
+                  Population: {{allDetails[0].population}}
+                </li>
+                <li>
+                  Lat and Lon: {{allDetails[0].latlng.toString().split(",").join(", ")}}
+                </li>
+                <li> Languages: <span *ngFor="let each of allDetails[0].languages">
+                   <a [routerLink]="['/language',each.iso639_1]"> {{each.name}} </a>
+                   </span>
+               </li>
+               <small>Click to view all countries with this language</small>
+               <li>
+                  <a data-toggle="modal" href="#exampleModal">Click to view translations</a>
+               </li>
+               <li> Regional Blocks:
+                 <span *ngFor="let each of allDetails[0].regionalBlocs">{{each.acronym}}</span>
+               </li>
+
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="info3">
+              <ul>
+                <li>
+                  Demonym: {{allDetails[0].demonym}}
+                </li>
+                <li>
+                  Area: {{allDetails[0].area}}
+                </li>
+                <li>
+                  Gini: {{allDetails[0].gini}}
+                </li>
+                <li>
+                    <a data-toggle="modal" href="#time">Click to view all time zones</a>
+                  </li>
+                <li>
+                    Cioc : {{allDetails[0].cioc}}
+                </li>
+
+                <li> currencies: <span *ngFor="let each of allDetails[0].currencies">
+                   <a [routerLink]="['/currency',each.code]"> {{each.code}}</a>
+                   </span>
+               </li>
+               <small>Click to view all countries with this currency</small>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-top: 5%"></div>
+
+<!-- Modal -->
+<div class=" container modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Translations</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{translations.split('"').join("  ").split('{').join("  ")}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class=" container modal fade" id="time" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Time zones</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             {{allDetails[0].timezones.toString().split(",").join(", ")}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <!-- end of modal -->

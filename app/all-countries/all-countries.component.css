@@ -1,0 +1,15 @@
+.row{
+    padding: 2%;
+}
+
+
+.columns{
+    padding:2%;
+}
+
+img{
+    width:259px;
+    height:180px;
+    align-self: center;
+    
+}
